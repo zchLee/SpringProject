@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--
+    引用类型的自动注入：spring框架通过某些规则可以给引用类型赋值。不用手动给引用类型赋值
+        (针对的是引用类型，基本数据类型用不了)
+    使用规则常用的是byName，byType.
+    1、byName（按名称注入）：java类中引用类型的属性名，和spring容器中（配置文件）<bean> 的id名称一样，
+            且数据类型是一致，这样的容器中的bean，spring能赋值给引用类型
+       语法：
+       <bean id="xx" value="xxx" autowire="byName">
+            简单类型赋值
+       </bean>
+
+    2、byType(按类型注入)：java类中，引用类型的数据类型和Spring容器中（配置文件中的Bean）<bean>的class属性是同源关系
+            这样的bean能够赋值给引用类型
+       同源关系：
+            1.java类中引用数据类型，和<Bean>标签中class属性的值是一样的。
+            2.java类中引用数据类型和<Bean>标签中class属性的值是父子类的关系
+            3.java类中引用数据类型和<Bean>标签中class属性的值是接口和实现类的关系
+       语法：
+       <bean id="xx" value="xxx" autowire="byType">
+            简单类型赋值
+       </bean>
+
+       注意：byType（按类型注入），在xml配置文件中声明bean只能有一个符合条件的，
+            多个会报错 NoUniqueBeanDefinitionException: No qualifying bean of type
+-->
+    <!-- byName -->
+    <bean id="student" class="com.lea.di05.Student" autowire="byType">
+        <property name="name" value="张三"/>
+        <property name="age" value="21"/>
+<!--        引用类型-->
+<!--        <property name="school" ref="school"/>-->
+    </bean>
+    <!--声明school对象-->
+<!--    <bean id="dqdwwqqweq" class="com.lea.di05.School">-->
+<!--        <property name="name" value="di05湖畔大学"/>-->
+<!--        <property name="address" value="杭州"/>-->
+<!--    </bean>-->
+<!--    声明子类PrimarySchool对象-->
+    <bean id="acdefg" class="com.lea.di05.PrimarySchool">
+        <property name="name" value="子类-湖畔大学-di05"/>
+        <property name="address" value="杭州"/>
+    </bean>
+</beans>

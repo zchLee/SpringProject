@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--    声明student对象
+        注入：就是赋值的意思
+        简单类型：spring中规定java的基本数据类型，和String都是简单类型
+        di：给属性赋值
+        1.set注入（设置注入）：调用类的set方法，在set方法中完成赋值
+            1）简单类型的set注入；
+                <bean id="xx" class="xx">
+                    <property name="属性名" value="此属性的值"></property>
+                    一个property只能给一个属性赋值
+                </bean>
+            2) 引用类型的set注入：spring调用的set方法，
+                 <bean id="xx" class="xx">
+                    <property name="属性名" ref="bean的id（对象的名称）"></property>
+                </bean>
+        2. 构造注入：spring调用类有参的构造方法，在创建对象的同时，在构造方法中给属性赋值
+              构造注入使用<constructor-arg>标签
+               <constructor-arg> 属性：
+                    name:表示构造方法的形参名
+                    index:表示构造方法的参数位置，参数从左往右 从0,开始数
+                    value：如果构造方法的形参类型是简单数据类型，使用value
+                    ref：构造方法的形参类型是引用类型，使用ref
+            </bean>
+-->
+    <bean id="student" class="com.lea.di03.Student">
+        <constructor-arg name="age" value="18"></constructor-arg>
+        <constructor-arg name="myName" value="李四"></constructor-arg>
+        <constructor-arg name="school" ref="mySchool"></constructor-arg>
+    </bean>
+
+<!--    使用index注入-->
+    <bean id="studentByIndex" class="com.lea.di03.Student">
+        <constructor-arg index="1" value="81"></constructor-arg>
+        <constructor-arg index="0" value="另一个李四"></constructor-arg>
+        <constructor-arg index="2" ref="mySchool"></constructor-arg>
+    </bean>
+<!--声明School对象-->
+    <bean id="mySchool" class="com.lea.di03.School">
+        <constructor-arg name="name" value="武汉大学"></constructor-arg>
+        <constructor-arg name="address" value="洪山"></constructor-arg>
+    </bean>
+    <!--创建File，使用构造注入-->
+    <bean id="myFile" class="java.io.File">
+        <constructor-arg name="parent" value="E:\CodeSpace\SpringProject\ch02-di-xml"/>
+        <constructor-arg name="child" value="src\readme.md"/>
+    </bean>
+</beans>
