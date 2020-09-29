@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--   声明组件扫描器（component-scan） 组件就是java对象
+    base-package：指定注解在项目中的报名
+    component-scan工作方式：spring会扫描遍历base-package指定包，把包中的和子包中的所有类，
+        找到类中的注解，按照注解的功能创建对象，或给属性赋值
+
+    加入component-scan标签，配置文件的变化：
+        1.加入一个新的约束文件
+            xmlns:context="http://www.springframework.org/schema/context"
+        2. 给新约束起个命名空间的名称
+            http://www.springframework.org/schema/context
+
+-->
+    <context:component-scan base-package="com.lea.di01"/>
+</beans>
