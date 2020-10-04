@@ -19,7 +19,16 @@
             http://www.springframework.org/schema/context
 
 -->
+    <context:component-scan base-package="com.lea.di01"/>
+
+<!--    指定多个包的三种方式-->
+<!--    1.使用多次组件扫描器，指定不同的包-->
+    <context:component-scan base-package="com.lea.di01"/>
     <context:component-scan base-package="com.lea.di02"/>
-<!--    加载配置文件 使其他地方可以使用 ${key}-->
-    <context:property-placeholder location="classpath:student.properties" />
+
+<!--    2.使用分隔符（;或者是,）来分隔多个包名-->
+    <context:component-scan base-package="com.lea.di01;com.lea.di02"/>
+
+<!--    3.指定父包 由spring扫描当前包及子包下得来-->
+    <context:component-scan base-package="com.lea"/>
 </beans>
