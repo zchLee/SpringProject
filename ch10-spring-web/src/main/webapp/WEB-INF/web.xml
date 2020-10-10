@@ -20,6 +20,9 @@
     /WEB-INF/applicationContext.xml就是默认的读取配置文件路劲
 
     可以修改默认的读取文件路径，使用context-param重新指定文件的位置
+
+    配置监听器：目的是创建容器对象，就能把applicationContext.xml配置文件中的所有对象创建好，并放在ServletContext中，
+    让每次请求能直接拿到容器对象
 -->
     <context-param>
 <!--        contextConfigLocation:表示配置文件的路径-->
