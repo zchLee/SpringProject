@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <!--
+        把数据库的配置信息，写在一个独立的文件中，便于修改管理
+        spring加载这个配置文件
+
+        system-properties-mode="NEVER":解决配置username是主机名的问题；spring框架获取环境变量的核心代码了，查看PropertySourcesPlaceholderConfigurer类的api ，在这里你会看到username获取到的是本地环境变量
+     -->
+    <context:property-placeholder location="classpath:jdbc.properties" system-properties-mode="NEVER"/>
+<!--声明数据源-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close">
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+        <property name="maxActive" value="${maxActive}" />
+    </bean>
+<!--    声明的是mybatis中所提供的SqlSessionFactoryBean类，此类内部创建SqlSessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+<!--        set注入，把数据库连接池付给了dataSource-->
+        <property name="dataSource" ref="dataSource"/>
+<!--        mybatis主配置文件的位置
+                configLocation属性是Resource类型，读取配置文件
+                它的赋值，使用value
+                在spring中要指定其它配置文件位置要用classpath：
+-->
+        <property name="configLocation" value="classpath:mybatis.xml"/>
+    </bean>
+<!--创建dao对象，是使用sqlSession的getMapper(Dao)
+    MapperScannerConfigurer:在内部调用getMapper() 然后生成每个dao接口的对象
+-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+<!--        指定sqlSessionFactory对象的id-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+<!--        指定包名，包名是dao接口所在的包名
+        MapperScannerConfigurer会扫描这个包中的所有接口，
+        把每个接口都执行一次getMapper(interface.class)， 得到每个接口的dao对象
+        创建好的dao对象，放进spring的ioc容器中.dao对象的默认名称是 接口名首字母小写
+        多个包用逗号分隔
+-->
+        <property name="basePackage" value="com.lea.dao"/>
+    </bean>
+
+    <!-- 声明service -->
+    <bean id="buyGoodsService" class="com.lea.service.impl.BuyGoodsServiceImpl">
+<!--        此处不用set注入，可以直接用注解注入-->
+<!--        <property name="goodsDao" ref="goodsDao"/>-->
+<!--        <property name="saleDao" ref="saleDao"/>-->
+    </bean>
+
+<!--  使用spring事务的管理  -->
+<!--    1.声明事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+<!--        指定数据源，通过此数据源来操作事务-->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+<!--2.开启事务注解驱动：交给spring代理事务对象
+    transaction:事务管理器的对象
+-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+</beans>
