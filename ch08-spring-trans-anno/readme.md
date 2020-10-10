@@ -83,7 +83,7 @@
 ##### 实现步骤参考06modul
 
 ##### spring框架中提供的事务处理方法
-##### 1.适合中小项目使用的，注解方案
+### 1.适合中小项目使用的，注解方案
     spring框架使用aop给业务方法增加事务的功能，<u>使用@Transactional注解增加事务</u>
     @Transactional属于spring框架，方法放在public方法上面，表示当前方法具有事务
     可以给注解的属性赋值，表示具体的隔离级别，传播行为，异常信息等
@@ -100,6 +100,8 @@
     注意：
         @Transactional若使用在方法上，只能用在public方法上，对于非public方法,该方法不会报错也不会执行事务
         因为spring忽略所有非public方法上的@Trancational注解   
+        
+        
 ####### 使用@Transactional步骤：
 1.需要声明事务管理器对象
     <bean id="xx" class="xxx.DataSourceTransactionManager" />
@@ -118,5 +120,17 @@
         }
     }
     
-
-        
+    
+### 2. 适合大型项目，有很多的类，方法，需要大量的配置事务，使用aspectj框架功能，在spring配置文件中声明类，方法需要的事务。这种方式业务方法和事务配置完全分离
+###### 实现步骤：都是在xml中配置完成的。
+ 1. 要使用aspectj框架，需要加入依赖
+     <!-- https://mvnrepository.com/artifact/org.springframework/spring-aspects -->
+     <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-aspects</artifactId>
+         <version>5.2.5.RELEASE</version>
+     </dependency>
+ 2. 声明事务管理器
+     <bean id="xxx" class="DataSourceTransactionManager"/>  
+ 3. 声明事务需要的事务类型（配置事务属性【隔离级别，传播行为，超时】）
+ 4. 配置aop，指定哪些类要创建代理
