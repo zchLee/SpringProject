@@ -5,12 +5,15 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
+import org.springframework.core.env.StandardEnvironment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
@@ -44,7 +47,7 @@ public class SpringConfiguration {
 //    JDBCProperties jdbcProperties;
 
     @Bean
-    public DataSource dataSource(AnnotationConfigApplicationContext context) throws Exception {
+    public DataSource dataSource(ApplicationContext context) throws Exception {
         // 方式一：
 //        InputStream is = SpringConfiguration.class.getClassLoader().getResourceAsStream("jdbc.properties");
 //        Properties properties = new Properties();
@@ -52,8 +55,10 @@ public class SpringConfiguration {
 //        return DruidDataSourceFactory.createDataSource(properties);
         // 方式二：
         // 此处： properties加载了，但是Value注入失败，故手动拿值.
-        // 如果你又解决方法，烦告知
-        org.springframework.core.env.PropertySource<?> properties = context.getEnvironment().getPropertySources().get("properties");
+        // 如果看官有解决方法，烦请告知
+        StandardEnvironment environment = (StandardEnvironment) context.getEnvironment();
+        org.springframework.core.env.PropertySource<?> properties = environment.getPropertySources().get("properties");
+//        org.springframework.core.env.PropertySource<?> properties = context.getEnvironment().getPropertySources().get("properties");
         DruidDataSource druidDataSource = new DruidDataSource();
         druidDataSource.setUrl(properties.getProperty("url").toString());
         druidDataSource.setUsername(properties.getProperty("username").toString());
