@@ -27,14 +27,14 @@ public class MyInvocationHandler implements InvocationHandler {
     /**
      * @author: lzc
      * @date: 2020-10-11 22:23
-     * @param proxy  代理对象的引用
+     * @param proxy  代理对象的引用(指定代理的类)
      * @param method 当前执行的方法
      * @param args   当前执行方法的参数
      * @return Object 和被代理对象有相同的返回值
      */
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        System.out.println("handler已经执行");
+        System.out.println("proxy是什么东西：" + proxy.getClass().getName());
         // 通过代理对象执行方法时，会调用执行invoke()
         Object res = null;
         // 增强方法
