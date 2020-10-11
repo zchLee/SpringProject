@@ -1,4 +1,4 @@
-package com.lea.service;
+package com.lea.proxy.service;
 
 /**
  * @author lzc

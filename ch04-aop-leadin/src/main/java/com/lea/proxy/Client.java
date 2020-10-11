@@ -1,8 +1,8 @@
-package com.lea;
+package com.lea.proxy;
 
-import com.lea.handler.MyInvocationHandler;
-import com.lea.service.SomeService;
-import com.lea.service.impl.SomeServiceImpl;
+import com.lea.proxy.handler.MyInvocationHandler;
+import com.lea.proxy.service.SomeService;
+import com.lea.proxy.service.impl.SomeServiceImpl;
 
 import java.lang.reflect.Proxy;
 
@@ -10,7 +10,7 @@ import java.lang.reflect.Proxy;
  * @author lzc
  * @create 2020-10-4 16:38
  */
-public class Main {
+public class Client {
 
     public static void main(String[] args) {
         // jdk代理对象实现AOP

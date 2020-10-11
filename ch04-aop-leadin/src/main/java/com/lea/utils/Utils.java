@@ -3,6 +3,8 @@ package com.lea.utils;
 /**
  * @author lzc
  * @create 2020-10-4 16:30
+ *
+ * 提供增强方法
  */
 public class Utils {
 

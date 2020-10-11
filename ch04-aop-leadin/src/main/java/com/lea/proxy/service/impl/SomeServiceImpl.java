@@ -1,6 +1,6 @@
-package com.lea.service.impl;
+package com.lea.proxy.service.impl;
 
-import com.lea.service.SomeService;
+import com.lea.proxy.service.SomeService;
 
 /**
  * @author lzc
@@ -9,11 +9,11 @@ import com.lea.service.SomeService;
 public class SomeServiceImpl implements SomeService {
     @Override
     public void doSome() {
-        System.out.println("执行业务方法odSome。。。");
+        System.out.println("生产一些东西。。。");
     }
 
     @Override
     public void doOther() {
-        System.out.println("执行业务方法doOther。。。");
+        System.out.println("生产一些其他东西。。。");
     }
 }
