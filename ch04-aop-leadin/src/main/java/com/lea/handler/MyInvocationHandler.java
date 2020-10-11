@@ -24,15 +24,24 @@ public class MyInvocationHandler implements InvocationHandler {
 //        this.target = target;
 //    }
 
+    /**
+     * @author: lzc
+     * @date: 2020-10-11 22:23
+     * @param proxy  代理对象的引用
+     * @param method 当前执行的方法
+     * @param args   当前执行方法的参数
+     * @return Object 和被代理对象有相同的返回值
+     */
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         System.out.println("handler已经执行");
         // 通过代理对象执行方法时，会调用执行invoke()
         Object res = null;
-        //
+        // 增强方法
         Utils.log();
-        // 执行目标类的方法，通过method类实现
+        // 执行目标类（被代理类）的方法，通过method类实现
         res = method.invoke(target, args); // 此处执行的是目标对象的方法，并返回结果
+        // 增强方法
         Utils.doTrans();
         // 目标方法执行结果
         return res;
