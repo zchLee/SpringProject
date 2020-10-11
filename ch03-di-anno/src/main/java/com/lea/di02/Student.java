@@ -1,6 +1,5 @@
 package com.lea.di02;
 
-import com.lea.di03.School;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 

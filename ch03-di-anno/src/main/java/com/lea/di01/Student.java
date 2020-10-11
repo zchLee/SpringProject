@@ -1,6 +1,10 @@
 package com.lea.di01;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 /**
  * @author lzc
@@ -27,9 +31,16 @@ import org.springframework.stereotype.Component;
  *
  *  @Component在实体类不是上述分层时，用@Component
  *
+ *  @Scope：改变bean声明周期 默认singleton，同xml配置中的解释说明  prototype多例
+ *
+ *  下面两个注解只能修饰方法
+ *  @PostConstruct: 指定bean初始方法
+ *  @@PreDestroy： 做定bean销毁方法
+ *
  */
 //@Component("myStudent")
 @Component
+@Scope("singleton")
 public class Student {
 
     private String name;
@@ -42,6 +53,16 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @PostConstruct
+    public void init() {
+        System.out.println("bean初始方法---");
+    }
+
+    @PreDestroy
+    public void destroy() {
+        System.out.println("bean销毁方法---");
     }
 
     @Override

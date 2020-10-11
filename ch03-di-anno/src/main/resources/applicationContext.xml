@@ -19,7 +19,7 @@
             http://www.springframework.org/schema/context
 
 -->
-    <context:component-scan base-package="com.lea.di02"/>
+    <context:component-scan base-package="com.lea.di01"/>
 <!--    加载配置文件 使其他地方可以使用 ${key}-->
     <context:property-placeholder location="classpath:student.properties" />
 </beans>
