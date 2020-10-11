@@ -30,6 +30,22 @@
         spring能创建一个非自定义的对象，创建一个存在某个类的对象
     -->
     <bean id="myDate" class="java.util.Date"></bean>
+
+
+<!--    bean的作用域调整：
+            scope属性:调整bean的作用范围
+                singleton: 单例（默认值）
+                    新建：容器创建时就新建
+                    销毁： 容器销毁时销毁
+                prototype： 多例
+                    新建：当使用对象时spring才会创建
+                    销毁：当对象长时间不用，由java垃圾回收器回收
+                request： 作用域web应用的请求范围
+                session： 作用于web应用的会话返回
+                global-session： 作用于集群环境的会话范围（全局会话范围），当不是集群时就是session
+-->
+    <bean id="someServiceByScope" class="com.lea.service.impl.SomeServiceImpl" scope="prototype"
+        init-method="init" destroy-method="destroy"/>
 </beans>
 
 <!--

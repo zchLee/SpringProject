@@ -75,6 +75,18 @@ public class TestSpring {
         System.out.println(someService);
     }
 
+    // bean的作用域
+    @Test
+    public void testScope() {
+        String config = "beans.xml";
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(config);
+        SomeService someService = context.getBean("someServiceByScope", SomeService.class);
+        SomeService someService2 = context.getBean("someServiceByScope", SomeService.class);
+        System.out.println("两次获取bean是否相等" + (someService == someService2));
+        // 手动关闭容器
+        context.close();
+    }
+
 
 
     /*
