@@ -18,6 +18,14 @@
     <bean id="someService" class="com.lea.service.impl.SomeServiceImpl"></bean>
     <bean id="someService1" class="com.lea.service.impl.SomeServiceImpl" scope="prototype"></bean>
 
+<!--    创建bean的第二种方式：使用普通工厂方法创建对象（使用某个类中的方法创建对象）-->
+    <bean id="factory" class="com.lea.factory.InstanceFactory"></bean>
+<!--    factory:工厂类id ；factory-method：方法名-->
+    <bean id="someServiceByFactory" factory-bean="factory" factory-method="getSomeService" />
+
+<!-- 创建bean的第三种方式：使用静态工厂中的静态方法创建对象，使用某个静态方法创建对象，并存入spring容器-->
+    <bean id="staticSomeService" class="com.lea.factory.StaticFactory" factory-method="getSomeService"></bean>
+
     <!--
         spring能创建一个非自定义的对象，创建一个存在某个类的对象
     -->

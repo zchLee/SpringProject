@@ -39,10 +39,13 @@ public class TestSpring {
 //        AnnotationConfigApplicationContext：用于读取注解创建容器
         ApplicationContext context = new ClassPathXmlApplicationContext(config);
 
-        // 3. 从容器中获取某个对象
-        SomeService someService = context.getBean("someService", SomeService.class);
-//        System.out.println(someService);
-        someService.doSome();
+        // 3. 从容器中获取某个对象 三种创建bean的方式
+//        SomeService someService = context.getBean("someService", SomeService.class);
+//        someService.doSome();
+//        SomeService someServiceByFactory = context.getBean("someServiceByFactory", SomeService.class);
+//        System.out.println(someServiceByFactory);
+        SomeService staticSomeService = context.getBean("staticSomeService", SomeService.class);
+        System.out.println(staticSomeService);
     }
 
     /*
