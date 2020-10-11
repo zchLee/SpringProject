@@ -3,8 +3,12 @@ package com.lea;
 import com.lea.service.SomeService;
 import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -19,6 +23,10 @@ public class TestSpring {
     /*
     测试spring的使用
         spring默认创建对象时间：在创建spring容器（ApplicationContext）会创建配置文件中所有对象
+
+     核心容器两个接口引发的问题：
+        ApplicationContext：在构建核心容器时，创建对象的策略是采用立即加载的方式。读配置文件后，立马创建配置文件
+        BeanFactory：在构建核心spring容器时，采取创建策略时采用延迟加载方式，什么时候根据id获取对象时才创建对象
      */
     @Test
     public void test() {
@@ -26,8 +34,9 @@ public class TestSpring {
         String config = "beans.xml";
         // 2.创建表示Spring容器的对象，ApplicationContext
         //      其表示Spring容器，通过容器对象就可以获取对应对象并使用对象
-//        FileSystemXmlApplicationContext 读取项目外的配置文件用
 //        ClassPathXmlApplicationContext 表示从类路径中加载spring配置文件
+//        FileSystemXmlApplicationContext 读取磁盘任意路径的配置文件用（需要有访问权限）
+//        AnnotationConfigApplicationContext：用于读取注解创建容器
         ApplicationContext context = new ClassPathXmlApplicationContext(config);
 
         // 3. 从容器中获取某个对象
@@ -50,6 +59,17 @@ public class TestSpring {
         // 2.容器中每个定义的对象名称
         String[] names = context.getBeanDefinitionNames();
         System.out.println(Arrays.toString(names));
+    }
+
+
+    // BeanFactory：在构建核心spring容器时，采取创建策略时采用延迟加载方式，什么时候根据id获取对象时才创建对象
+    @Test
+    public void testBeanFactory() {
+        String config = "beans.xml";
+        Resource rs = new ClassPathResource(config);
+        BeanFactory factory = new XmlBeanFactory(rs);
+        SomeService someService = factory.getBean("someService", SomeService.class);
+        System.out.println(someService);
     }
 
 
