@@ -58,7 +58,7 @@
 <!--        指定数据源，通过此数据源来操作事务-->
         <property name="dataSource" ref="dataSource"/>
     </bean>
-<!--    2.2 声明业务方法的事务属性(隔离级别，传播行为，超时时间)
+<!--    2.2 配置AOP切面，声明业务方法的事务属性(隔离级别，传播行为，超时时间)
         id：自定义名称：表示<tx:advice> 和 </tx:advice> 之间的配置内容
 -->
     <tx:advice id="myAdvice" transaction-manager="transactionManager">
