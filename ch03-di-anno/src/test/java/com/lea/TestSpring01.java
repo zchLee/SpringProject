@@ -18,7 +18,7 @@ public class TestSpring01 {
 //        ApplicationContext context = new ClassPathXmlApplicationContext(); // 用此构造器加载默认配置文件
         ApplicationContext context = new ClassPathXmlApplicationContext(config);
         // 从容器中获取对象
-        Student myStudent = context.getBean("myStudent", Student.class);
+        Student myStudent = context.getBean("student", Student.class);
         System.out.println(myStudent);
     }
 

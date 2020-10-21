@@ -1,5 +1,6 @@
 package com.lea.di01;
 
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -39,7 +40,7 @@ import javax.annotation.PreDestroy;
  *
  */
 //@Component("myStudent")
-@Component
+@Component()
 @Scope("singleton")
 public class Student {
 
