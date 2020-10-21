@@ -31,8 +31,8 @@ import org.springframework.context.annotation.Configuration;
  *      多实例时，容器不再管理
  *
  */
-@Configuration
-@ComponentScan("com.lea")
+//@Configuration
+//@ComponentScan("com.lea")
 public class MainConfigOfLifeCycle {
 
     @Bean(initMethod = "init", destroyMethod = "destroy")  // 指定Bean 初始化方法 和销毁方法

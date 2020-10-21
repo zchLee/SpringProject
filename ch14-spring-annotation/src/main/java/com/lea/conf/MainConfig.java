@@ -38,9 +38,9 @@ import org.springframework.context.annotation.Lazy;
 //            @ComponentScan.Filter(type = FilterType.CUSTOM, classes = MyTypeFilter.class)
 //        }
 //        )
-@ComponentScan
-@Configuration  // 告诉spring这是一个配置类
-@Import({OtherColor.class, OtherRed.class, MyImportSelector.class, MyImportBeanDefinitionRegistrar.class})  // 导入组件，id默认是全类名
+//@ComponentScan
+//@Configuration  // 告诉spring这是一个配置类
+//@Import({OtherColor.class, OtherRed.class, MyImportSelector.class, MyImportBeanDefinitionRegistrar.class})  // 导入组件，id默认是全类名
 public class MainConfig {
 
     @Bean // 给容器注册bean，类型返回值的类型，id默认是用方法名作为id
