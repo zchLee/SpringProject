@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
  * @author lzc
  * @create 2020-10-21 14:47
  *
- * 后置处理器 ： 初始化前后方法调用
+ * 后置处理器 ： 初始化前后方法调用  在spring中作用很多
  */
-@Component
+//@Component
 public class MyBeanPostProcess implements BeanPostProcessor {
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
