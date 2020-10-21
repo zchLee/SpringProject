@@ -59,6 +59,7 @@
     </bean>
 <!--2.开启事务注解驱动：交给spring代理事务对象
     transaction:事务管理器的对象
+    @EnableTransactionManagement: 开启spring注解支持 如果用注解可以用这个替换下面的标签
 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>

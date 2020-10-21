@@ -13,7 +13,7 @@
                     一个property只能给一个属性赋值
                 </bean>
 -->
-    <bean id="student" class="com.lea.di01.Student">
+    <bean id="student" class="com.lea.di01.Student" depends-on="myDate">
         <property name="name" value="张三"/>
         <property name="age" value="21"/>
     </bean>

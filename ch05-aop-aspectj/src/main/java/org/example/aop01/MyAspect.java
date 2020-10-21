@@ -3,6 +3,7 @@ package org.example.aop01;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -43,6 +44,9 @@ public class MyAspect {
 //        System.out.println("前置切面通知：" + new Date());
 //    }
 
+    @Pointcut("execution(public void org.example.aop01.SomeServiceImpl.doSome(String,Integer))")
+    public void pt1() {}
+
     /*
     指定通知方法中的参数：org.aspectj.lang.JoinPoint
      joinPoint:业务方法，要加入切面功能的业务方法
@@ -51,7 +55,7 @@ public class MyAspect {
 
      这个joinPoint参数的值是由框架赋予，必须是第一个位置的参数
      */
-    @Before(value = "execution(public void org.example.aop01.SomeServiceImpl.doSome(String,Integer))")
+    @Before(value = "pt1()")
     public void myBefore(JoinPoint joinPoint) {
         System.out.println("方法的完整定义：" + joinPoint.getSignature());
         System.out.println("方法的名称：" + joinPoint.getSignature().getName());
