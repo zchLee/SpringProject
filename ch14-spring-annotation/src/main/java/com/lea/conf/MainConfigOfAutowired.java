@@ -27,6 +27,9 @@ import org.springframework.context.annotation.Primary;
  *
  * 自定义组件想要使用spring容器底层的一些组件（ApplicationContext， BeanFactory， xx）
  *      自定义类实现xxxAware: 在创建对象的时候，会调用接口规定的方法，注入相关的组件 Aware
+ *      把spring底层一些组件注入到自定义的Bean中
+ *          xxxAware:使用xxxAwareProcessor实现注入
+ *              ApplicationContextAware==》ApplicationContextAwareProcessor
  */
 @Configuration
 @ComponentScan("com.lea")
