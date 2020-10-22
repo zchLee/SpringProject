@@ -31,8 +31,8 @@ import org.springframework.context.annotation.Primary;
  *          xxxAware:使用xxxAwareProcessor实现注入
  *              ApplicationContextAware==》ApplicationContextAwareProcessor
  */
-@Configuration
-@ComponentScan("com.lea")
+//@Configuration
+//@ComponentScan("com.lea")
 public class MainConfigOfAutowired {
 
     @Primary // 告诉spring容器首选
