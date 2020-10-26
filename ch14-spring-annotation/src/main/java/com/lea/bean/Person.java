@@ -24,6 +24,10 @@ public class Person {
     @Value("${person.nickname}")
     private String nickname;
 
+    public Person() {
+        System.out.println("person构造方法被调用了");
+    }
+
     public String getNickname() {
         return nickname;
     }

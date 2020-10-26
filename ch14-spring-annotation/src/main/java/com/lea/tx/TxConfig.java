@@ -52,9 +52,9 @@ import java.beans.PropertyVetoException;
  *                          如果正常，利用事务管理器提交事务
  *
  */
-@EnableTransactionManagement
-@Configuration
-@ComponentScan("com.lea.tx")
+//@EnableTransactionManagement
+//@Configuration
+//@ComponentScan("com.lea.tx")
 public class TxConfig {
 
     @Bean
