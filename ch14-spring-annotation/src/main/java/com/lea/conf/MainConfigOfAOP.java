@@ -165,8 +165,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  *
  *
  */
-//@EnableAspectJAutoProxy
-//@Configuration
+@EnableAspectJAutoProxy
+@Configuration
 public class MainConfigOfAOP {
 
     @Bean
