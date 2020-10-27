@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @author lzc
  * @create 2020-10-27 14:44
  */
-@Component
+//@Component
 public class MyBeanDefinitionRegistryPostProcessor implements BeanDefinitionRegistryPostProcessor {
 
     // BeanDefinitionRegistry Bean定义信息的保存中心，以后BeanFactory就是按照BeanDefinitionRegistry里面保存的每一个bean定义信息，创建实例的
